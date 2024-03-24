@@ -21,5 +21,36 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:user) {build(:user)}
+
+  context "Validations" do
+    it "is valid when created with all valid fields" do
+      expect(user).to be_valid
+    end
+
+    it "is invalid if username is nil" do
+      user.username = nil
+      expect(user).to be_invalid
+    end
+
+    it "is invalid if the email is nil" do
+      user.email = nil
+      expect(user).to be_invalid
+    end
+    
+    context "More than one user" do
+      let(:base_user) {create(:user)}
+      let(:other_user) {create(:user)}
+
+      it "is invalid if the email is not unique" do
+        other_user.email = base_user.email
+        expect(other_user).to be_invalid
+      end
+
+      it "is invalid if the username is not unique" do
+        other_user.username = base_user.username
+        expect(other_user).to be_invalid
+      end
+    end
+  end
 end
