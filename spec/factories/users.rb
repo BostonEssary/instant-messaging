@@ -23,5 +23,6 @@ FactoryBot.define do
     username {Faker::Internet.unique.username }
     email {Faker::Internet.unique.email}
     password {Faker::Internet.password(min_length:6)}
+    avatar { Rack::Test::UploadedFile.new('app/assets/images/MM.._FOOD.jpg', 'image/jpg')}
   end
 end

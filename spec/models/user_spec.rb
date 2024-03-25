@@ -37,6 +37,10 @@ RSpec.describe User, type: :model do
       user.email = nil
       expect(user).to be_invalid
     end
+
+    it "has an avatar attached" do
+      expect(user.avatar.attached?).to be(true)
+    end
     
     context "More than one user" do
       let(:base_user) {create(:user)}
