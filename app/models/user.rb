@@ -25,7 +25,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :sent_messages, class_name: "Message", foreign_key: "sender_id"
-  has_many :received_messages, class_name: "Message", foreign_key:  "receiver_id"
+  has_many :chat_members
+  has_many :chats, through: :chat_members
   has_one_attached :avatar
 
   validates :email, :username, presence: true, uniqueness: true
