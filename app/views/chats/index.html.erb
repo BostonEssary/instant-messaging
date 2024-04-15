@@ -1,3 +1,7 @@
+<% flash.each do |type, msg|%>
+  <%= "#{type}: #{msg}" %>
+<% end %>
+
 <% @chats.each do |chat| %>
   <%= link_to chat.id, chat_path(chat) %>
 <% end %>
