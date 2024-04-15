@@ -1,15 +1,16 @@
 class MessagesController < ApplicationController
 
   def index
-    @senders = Message.select(:sender_id).distinct
-    @receivers = Message.select(:receiver_id).distinct
+    @chat = Chat.find(params[:chat_id])
+    @messages = @chat.messages
   end
   def create
-    @message = Message.new(message_params)
+    @chat = Chat.find(params[:chat_id])
+    @message = @chat.messages.new(message_params)
     @message.sender = current_user
 
     if @message.save
-      redirect_to user_path(current_user.id)
+      redirect_to @chat
     else
       render :new, status: :unprocessable_entity
     end

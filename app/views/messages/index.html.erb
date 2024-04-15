@@ -1,5 +1,6 @@
 <div>
-  <% @senders.each do |sender| %>
-    <%=  sender %>
+  <% @messages.each do |message| %>
+    <p>Sent By: <%= message.sender.username %></p>
+    <p>Body: <%= message.body %></p>
   <% end %>
 </div>
