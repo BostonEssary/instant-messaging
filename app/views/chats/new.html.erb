@@ -1,2 +1,6 @@
-<h1>Chats#new</h1>
-<p>Find me in app/views/chats/new.html.erb</p>
+<%= render 'shared/user_search' %>
+<%= form_with model: @chat do |form|%>
+  <%= form.collection_select :user_id, User.where.not(id: current_user.id), :id, :username, multiple: true %>
+  <%= form.submit "New Chat" %>
+<% end %>
+

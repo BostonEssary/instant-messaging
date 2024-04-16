@@ -6,9 +6,18 @@ class ChatsController < ApplicationController
   end
 
   def create
+    @chat = Chat.new
+    @chat.users << current_user
+
+    if @chat.save
+      redirect_to @chat
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def new
+    @chat = Chat.new
   end
 
   def show
