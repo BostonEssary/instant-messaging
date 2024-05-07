@@ -1,3 +1,5 @@
-<%= @user.username%>
+<%= turbo_frame_tag 'users' do %>
+  <%= @user.username%>
 
-<%= image_tag @user.avatar.representation(resize_to_limit: [100, 100]) %>
+  <%= image_tag @user.avatar.representation(resize_to_limit: [100, 100]) %>
+<% end %>
