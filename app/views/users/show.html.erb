@@ -2,4 +2,6 @@
   <%= @user.username%>
 
   <%= image_tag @user.avatar.representation(resize_to_limit: [100, 100]) %>
+
+  <%= button_to "Create Chat", chats_path(user_ids: [@user.id]), method: :post  %>
 <% end %>
