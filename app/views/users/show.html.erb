@@ -3,5 +3,5 @@
 
   <%= image_tag @user.avatar.representation(resize_to_limit: [100, 100]) %>
 
-  <%= button_to "Create Chat", chats_path(user_ids: [@user.id]), method: :post  %>
+  <%= button_to "Create Chat", chats_path(user_ids: [@user.id]), method: :post, data: { turbo_frame: "_top" }  %>
 <% end %>
