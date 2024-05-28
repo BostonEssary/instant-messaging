@@ -16,6 +16,17 @@ class MessagesController < ApplicationController
     end
   end
 
+  def destroy
+    @chat = Chat.find(params[:chat_id])
+    @message = Message.find(params[:id])
+
+    if @message.update(deleted: true, body: "Deleted @ #{Time.now.strftime("%m/%d/%Y %I:%M %p")}")
+      flash.now
+    else
+      render @chat, status: :unprocessable_entity
+    end
+  end
+
   def new
     @message = Message.new
   end

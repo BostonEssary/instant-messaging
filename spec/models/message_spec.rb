@@ -4,6 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  body       :text
+#  deleted    :boolean
 #  edited     :boolean
 #  read       :boolean
 #  created_at :datetime         not null
