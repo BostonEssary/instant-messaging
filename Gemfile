@@ -76,3 +76,5 @@ end
 gem "devise", "~> 4.9"
 
 gem 'ruby-vips', '~> 2.2', '>= 2.2.1'
+
+gem "tailwindcss-rails", "~> 2.6"

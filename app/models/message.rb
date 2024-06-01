@@ -28,10 +28,13 @@ class Message < ApplicationRecord
 
     validates :body, presence: true
 
-    after_create_commit { broadcast_append_later_to :messages_list,
+    after_create_commit {
+        broadcast_append_to :messages_list,
                                                     target: "messages_for_chat_#{chat.id}",
                                                     partial: 'messages/message',
-                                                   locals: { message: self }}
+                                                   locals: { message: self }
+    broadcast_refresh_later_to :messages_list
+    }
 
     after_update_commit do
         broadcast_update_to :messages_list,
