@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  before_action :set_current_user
 
   def index
     @chat = Chat.find(params[:chat_id])
@@ -12,16 +13,16 @@ class MessagesController < ApplicationController
     if @message.save
       redirect_to @chat
     else
-      render :new, status: :unprocessable_entity
+      render 'chats/show', status: :unprocessable_entity
+
     end
   end
 
   def destroy
-    @chat = Chat.find(params[:chat_id])
     @message = Message.find(params[:id])
 
     if @message.update(deleted: true, body: "Deleted @ #{Time.now.strftime("%m/%d/%Y %I:%M %p")}")
-      flash.now
+      flash.now[:notice] = 'Deleted'
     else
       render @chat, status: :unprocessable_entity
     end
@@ -37,5 +38,9 @@ class MessagesController < ApplicationController
 
   def message_params
     params.require(:message).permit(:body, :receiver_id, :sender)
+  end
+
+  def set_current_user
+    @current_user = current_user
   end
 end

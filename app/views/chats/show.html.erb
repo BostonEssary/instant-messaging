@@ -9,12 +9,11 @@
 <%= turbo_stream_from :messages_list %>
     <div id = <%= dom_id(@chat, 'messages_for') %> >
       <% @chat.messages.each do |message| %>
-        <%= render 'messages/message', message: %>
+        <% if message.valid? %>
+          <%= render 'messages/message', message: %>
+        <% end %>
       <% end %>
     </div>
 
 
-<%= form_for [@chat, @message] do |f| %>
-  <%= f.text_field :body, id: "message-body" %>
-  <%= f.submit %>
-<% end %>
+<%= render 'messages/form' %>

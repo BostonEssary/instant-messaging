@@ -26,9 +26,20 @@ class Message < ApplicationRecord
     belongs_to :chat
     has_many_attached :attachments
 
+    validates :body, presence: true
+
     after_create_commit { broadcast_append_later_to :messages_list,
                                                     target: "messages_for_chat_#{chat.id}",
                                                     partial: 'messages/message',
                                                    locals: { message: self }}
+
+    after_update_commit do
+        broadcast_update_to :messages_list,
+                            target: "message_#{id}",
+                            partial: 'messages/message',
+                            locals: { message: self}
+    end
+
+
 
 end

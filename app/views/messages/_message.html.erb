@@ -1,10 +1,10 @@
-<div>
+<div id=<%= dom_id(message) %>>
   <%= message.body %>
   <% unless message.deleted %>
     sent by
     <%= message.sender.username unless message.sender.nil? unless message.deleted %>
   <% end %>
-  <% if message.sender_id == current_user.id && !message.deleted %>
-    <%= button_to 'Delete Message', chat_message_path(message.chat, message), method: :delete %>
+  <% if message.sender_id == @current_user&.id && !message.deleted %>
+    <%= button_to 'Delete Message', message_path(message), method: :delete %>
   <% end %>
 </div>

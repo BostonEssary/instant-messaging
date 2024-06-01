@@ -1,14 +1,2 @@
-<%= form_with model: @message do |form| %>
-  <div>
-    <%= form.label :body %>
-    <%= form.text_area :body %>
-  </div>
 
-  <div>
-    <%= form.label :receiver_id %>
-    <%= form.collection_select :receiver_id, User.all, :id, :username %>
-  </div>
-
-  <%= form.submit %>
-
-<% end %>
+<%= render 'form' %>
