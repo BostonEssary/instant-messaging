@@ -1,5 +1,5 @@
 class ChatsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :set_current_user
   before_action :check_authorization, only: [:show]
   def index
     @chats = Chat.all
@@ -7,8 +7,8 @@ class ChatsController < ApplicationController
 
   def create
     @chat = Chat.new
+    @chat.users << User.find(chat_params[:user_id])
     @chat.users << current_user
-    @chat.users << User.find(params[:user_ids])
 
     if @chat.save
       redirect_to @chat
@@ -28,6 +28,14 @@ class ChatsController < ApplicationController
 end
 
 private
+
+def chat_params
+  params.require(:chat).permit(:user_id)
+end
+
+def set_current_user
+  @current_user = current_user
+end
 
 def authorized?
   @chat = Chat.find(params[:id])

@@ -1,6 +1,6 @@
 <%= render 'shared/user_search' %>
 <%= form_with model: @chat do |form|%>
-  <%= form.collection_select :user_id, User.where.not(id: current_user.id), :id, :username, multiple: true %>
+  <%= form.collection_select :user_id, User.where.not(id: current_user.id), :id, :username %>
   <%= form.submit "New Chat" %>
 <% end %>
 
