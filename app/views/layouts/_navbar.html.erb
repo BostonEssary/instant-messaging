@@ -1,0 +1,11 @@
+<nav class="flex justify-between h-12 border-2 items-center">
+  <%= link_to 'All Chat', '/' %>
+  <div class="buttons flex gap-2">
+    <% if user_signed_in? %>
+      <%= button_to "Logout", destroy_user_session_path, method: :delete, class: 'bg-red-300' %>
+    <% else %>
+      <%= button_to 'Login', new_user_session_path, method: :get, class: 'bg-purple-300 p-1' %>
+      <%= button_to 'Sign Up', new_user_registration_path, method: :get, class: 'p-1' %>
+    <% end %>
+  </div>
+</nav>
