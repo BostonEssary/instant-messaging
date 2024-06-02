@@ -27,7 +27,10 @@ class User < ApplicationRecord
   has_many :sent_messages, class_name: "Message", foreign_key: "sender_id"
   has_many :chat_members
   has_many :chats, through: :chat_members
-  has_one_attached :avatar
+  has_one_attached :avatar do |attachable|
+    attachable.variant :thumb, resize_to_fill: [100, 100]
+    attachable.variant :small_thumb, resize_to_fill: [50, 50]
+  end
 
   validates :email, :username, presence: true, uniqueness: true
 end

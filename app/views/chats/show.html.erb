@@ -1,7 +1,13 @@
 <h1>Users in this chat</h1>
-<% @chat.users.each do |user| %>
-  <%= user.username %>
-<% end %>
+<div class="flex -space-x-3">
+  <% z_index = 0 %>
+  <% @chat.users.each_with_index do |user, index| %>
+    <% if user.avatar.presence %>
+      <%= image_tag user.avatar.variant(:small_thumb), class: "rounded-full z-#{z_index} border-2 border-black" %>
+    <% end %>
+    <% z_index += 5 %>
+  <% end %>
+</div>
 <br>
 
 
