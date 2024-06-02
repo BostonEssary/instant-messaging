@@ -16,7 +16,7 @@
     <div class="bg-indigo-100" id = <%= dom_id(@chat, 'messages_for') %> >
       <% @chat.messages.each do |message| %>
         <% if message.valid? %>
-          <%= render 'messages/message', message: %>
+          <%= render 'messages/message', message:, user: current_user %>
         <% end %>
       <% end %>
     </div>

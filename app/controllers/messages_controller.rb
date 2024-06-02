@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
     @message.sender = current_user
 
     if @message.save
-
+      @message.append_new_message(current_user, @chat)
     else
       render 'chats/show', status: :unprocessable_entity
 
@@ -43,4 +43,6 @@ class MessagesController < ApplicationController
   def set_current_user
     @current_user = current_user
   end
+
+
 end

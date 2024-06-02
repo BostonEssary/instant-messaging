@@ -29,10 +29,7 @@ class Message < ApplicationRecord
     validates :body, presence: true
 
     after_create_commit {
-        broadcast_append_to :messages_list,
-                                                    target: "messages_for_chat_#{chat.id}",
-                                                    partial: 'messages/message',
-                                                   locals: { message: self }
+
     }
 
     after_update_commit do
@@ -44,6 +41,13 @@ class Message < ApplicationRecord
 
     def formatted_created_at
         created_at.strftime("%m/%d/%Y %I:%M%p")
+    end
+
+    def append_new_message(user, chat)
+        broadcast_append_to :messages_list,
+                            target: "messages_for_chat_#{chat.id}",
+                            partial: 'messages/message',
+                            locals: { message: self, user: user }
     end
 
 
