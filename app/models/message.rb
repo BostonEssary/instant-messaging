@@ -33,7 +33,6 @@ class Message < ApplicationRecord
                                                     target: "messages_for_chat_#{chat.id}",
                                                     partial: 'messages/message',
                                                    locals: { message: self }
-    broadcast_refresh_later_to :messages_list
     }
 
     after_update_commit do
@@ -41,6 +40,10 @@ class Message < ApplicationRecord
                             target: "message_#{id}",
                             partial: 'messages/message',
                             locals: { message: self}
+    end
+
+    def formatted_created_at
+        created_at.strftime("%m/%d/%Y %I:%M%p")
     end
 
 

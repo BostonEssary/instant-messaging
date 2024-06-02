@@ -1,7 +1,14 @@
 <div id=<%= dom_id(message) %>>
-  <%= message.body %>
-  <% unless message.deleted %>
-    sent by
-    <%= message.sender.username unless message.sender.nil? unless message.deleted %>
-  <% end %>
+  <div class="ml-auto w-fit m-2">
+    <div class="bg-purple-300 ml-auto w-fit p-2 rounded ">
+      <%= message.body %>
+    </div>
+    <div class="font-thin text-xs">
+      <% unless message.deleted %>
+        <%= message.formatted_created_at %>
+      <% end %>
+    </div>
+  </div>
+
+
 </div>
