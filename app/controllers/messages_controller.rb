@@ -37,7 +37,7 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:body, :receiver_id, :sender)
+    params.require(:message).permit(:body, :receiver_id, :sender, attachments:[])
   end
 
   def set_current_user

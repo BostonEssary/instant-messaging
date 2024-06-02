@@ -7,6 +7,11 @@
     <%= form.text_area :body %>
   </div>
 
+  <div>
+    <%= form.label :attachments %><br />
+    <%= form.file_field :attachments, multiple: true %>
+  </div>
+
 
   <%= form.submit %>
 

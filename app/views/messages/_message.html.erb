@@ -1,7 +1,9 @@
 <div id=<%= dom_id(message) %>>
+
   <% if message.sender == user %>
     <div class="ml-auto w-fit m-2">
       <div class="bg-purple-300 ml-auto w-fit p-2 rounded ">
+        <%= render 'messages/message_images', message: %>
         <%= message.body %>
       </div>
       <div class="font-thin text-xs">
@@ -13,6 +15,7 @@
   <% else %>
     <div class="mr-auto w-fit m-2">
       <div class="bg-white mr-auto w-fit p-2 rounded ">
+        <%= render 'messages/message_images', message: %>
         <%= message.body %>
       </div>
       <div class="font-thin text-xs">
