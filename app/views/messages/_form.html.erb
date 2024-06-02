@@ -1,16 +1,13 @@
 <%= form_with model: [@chat, @message] do |form| %>
+    <%= render 'messages/errors', message: @message %>
 
 
   <div>
-    <%= form.label :body %>
+    <%= form.label :body, class: 'block'%>
     <%= form.text_area :body %>
   </div>
 
 
   <%= form.submit %>
 
-<% end %>
-<%= turbo_frame_tag id= "message_errors" do %>
-  <p>hello</p>
-  <%= render 'messages/errors', message: @message %>
 <% end %>
