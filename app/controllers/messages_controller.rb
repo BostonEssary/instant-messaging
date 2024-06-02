@@ -12,6 +12,7 @@ class MessagesController < ApplicationController
 
     if @message.save
       @message.append_new_message(current_user, @chat)
+      @message.broadcast_refresh_to("message_#{@message.id}")
     else
       render 'chats/show', status: :unprocessable_entity
 

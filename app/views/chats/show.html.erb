@@ -14,14 +14,18 @@
 
 <%= turbo_stream_from :messages_list %>
     <div class="bg-indigo-100" id = <%= dom_id(@chat, 'messages_for') %> >
-      <% @chat.messages.each do |message| %>
-        <% if message.valid? %>
-          <%= render 'messages/message', message:, user: current_user %>
+      <div class="messages-container p-4">
+        <% @chat.messages.each do |message| %>
+          <% if message.valid? %>
+            <%= render 'messages/message', message:, user: current_user %>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
 
 
 <div id="messages_form">
   <%= render 'messages/form' %>
 </div>
+
+<%= render 'messages_inline_style' %>

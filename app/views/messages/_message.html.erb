@@ -1,28 +1,13 @@
 <div id=<%= dom_id(message) %>>
-
-  <% if message.sender == user %>
-    <div class="ml-auto w-fit m-2">
-      <div class="bg-purple-300 ml-auto w-fit p-2 rounded ">
-        <%= render 'messages/message_images', message: %>
-        <%= message.body %>
-      </div>
-      <div class="font-thin text-xs">
-        <% unless message.deleted %>
-          <%= message.formatted_created_at %>
-        <% end %>
-      </div>
+  <div class="user_<%= message.sender_id %>">
+    <div class="message w-fit p-2 rounded bg-white">
+      <%= render 'messages/message_images', message: %>
+      <%= message.body %>
     </div>
-  <% else %>
-    <div class="mr-auto w-fit m-2">
-      <div class="bg-white mr-auto w-fit p-2 rounded ">
-        <%= render 'messages/message_images', message: %>
-        <%= message.body %>
-      </div>
-      <div class="font-thin text-xs">
-        <% unless message.deleted %>
-          <%= message.formatted_created_at %>
-        <% end %>
-      </div>
+    <div class="font-thin text-xs">
+      <% unless message.deleted %>
+        <%= message.formatted_created_at %>
+      <% end %>
     </div>
-  <% end %>
+  </div>
 </div>
