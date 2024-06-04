@@ -1,18 +1,21 @@
-<%= form_with model: [@chat, @message] do |form| %>
+<%= form_with model: [@chat, @message], data: { controller: 'file-upload' } do |form| %>
     <%= render 'messages/errors', message: @message %>
 
 
   <div>
-    <%= form.label :body, class: 'block'%>
-    <%= form.text_area :body %>
+    <%= form.text_area :body, class: 'rounded' %>
   </div>
 
-  <div>
-    <%= form.label :attachments %><br />
-    <%= form.file_field :attachments, multiple: true %>
+
+  <div class=>
+    <button data-action="click->file-upload#customUpload">Custom Upload</button>
+    <%= form.file_field :attachments, multiple: true, class:"hidden", data: { "file-upload-target": "originalButton" }  %>
   </div>
 
 
   <%= form.submit %>
 
 <% end %>
+
+
+

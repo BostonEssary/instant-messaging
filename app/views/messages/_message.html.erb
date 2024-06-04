@@ -1,6 +1,6 @@
 <div id=<%= dom_id(message) %>>
   <div class="user_<%= message.sender_id %>">
-    <div class="message w-fit p-2 rounded bg-white">
+    <div class="message w-fit p-2 rounded bg-white m-2">
       <%= render 'messages/message_images', message: %>
       <%= message.body %>
     </div>
