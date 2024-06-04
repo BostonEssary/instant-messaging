@@ -1,19 +1,22 @@
-<%= form_with model: [@chat, @message], data: { controller: 'file-upload' } do |form| %>
+<%= form_with model: [@chat, @message], data: { turbo: true, controller: 'file-upload' } do |form| %>
     <%= render 'messages/errors', message: @message %>
 
 
-  <div>
-    <%= form.text_area :body, class: 'rounded' %>
+  <div class="flex">
+    <div>
+      <%= form.text_area :body, class: 'rounded' %>
+    </div>
+
+    <div class=>
+      <button data-action="click->file-upload#customUpload">
+        <%= image_tag 'pic.svg',height: 32, width: 32 %>
+      </button>
+      <%= form.file_field :attachments, multiple: true, class:"hidden", data: { "file-upload-target": "originalButton" }  %>
+    </div>
   </div>
 
 
-  <div class=>
-    <button data-action="click->file-upload#customUpload">Custom Upload</button>
-    <%= form.file_field :attachments, multiple: true, class:"hidden", data: { "file-upload-target": "originalButton" }  %>
-  </div>
-
-
-  <%= form.submit %>
+  <%= form.submit   %>
 
 <% end %>
 

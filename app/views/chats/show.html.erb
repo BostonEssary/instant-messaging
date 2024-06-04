@@ -13,19 +13,20 @@
 
 
 <%= turbo_stream_from :messages_list %>
-    <div class="bg-indigo-100" id = <%= dom_id(@chat, 'messages_for') %> >
-      <div class="messages-container p-4">
+    <div class="h-screen" id = <%= dom_id(@chat, 'messages_for') %> >
+      <div class="messages-container bg-indigo-100 max-w-screen-md h-3/4 p-4 overflow-auto">
         <% @chat.messages.each do |message| %>
           <% if message.valid? %>
             <%= render 'messages/message', message:, user: current_user %>
           <% end %>
         <% end %>
       </div>
+      <div id="messages_form">
+        <%= render 'messages/form' %>
+      </div>
     </div>
 
 
-<div id="messages_form">
-  <%= render 'messages/form' %>
-</div>
 
-<%= render 'messages_inline_style' %>
+
+<%= render 'chats/messages_inline_style' %>
