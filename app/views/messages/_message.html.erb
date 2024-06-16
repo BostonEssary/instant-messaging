@@ -12,9 +12,9 @@
             <p class="text-xs font-thin"> <%= message.formatted_created_at %> </p>
           <% end %>
       </div>
-      <div class="message max-w-80 p-2 rounded bg-white m-2">
+      <div class="message max-w-72 p-2 rounded bg-white m-2">
         <%= render 'messages/message_images', message: %>
-        <div class="flow-text break-words">
+        <div class="flow-text break-all">
           <%= message.body %>
         </div>
       </div>
