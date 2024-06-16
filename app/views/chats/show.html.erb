@@ -14,7 +14,7 @@
 
 <%= turbo_stream_from :messages_list %>
 <div class="w-full h-screen items-center ">
-  <div class="messages-container mx-auto h-3/4 bg-indigo-100 max-w-screen-md p-4 overflow-auto" id= <%= dom_id(@chat, 'messages_for') %>>
+  <div class="messages-container mx-auto h-3/4 bg-indigo-100 max-w-screen-md p-4 overflow-x-hidden overflow-y-auto" id= <%= dom_id(@chat, 'messages_for') %>>
     <% @chat.messages.each do |message| %>
       <% if message.valid? %>
         <%= render 'messages/message', message:, user: current_user %>

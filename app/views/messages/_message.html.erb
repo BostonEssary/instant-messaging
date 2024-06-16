@@ -1,9 +1,9 @@
-<div id=<%= dom_id(message) %>>
+<div class="" id=<%= dom_id(message) %>>
   <div class="flex items-start user_<%= message.sender_id %>">
     <% if message.sender.avatar.presence %>
       <%= image_tag url_for(message.sender.avatar.variant(:small_thumb)), class: "rounded-full border-2 border-black" %>
     <% end %>
-    <div>
+    <div class="text-wrap">
       <div class="flex items-center gap-2">
         <div class="text-xl">
           <%= message.sender.username %>
@@ -12,9 +12,11 @@
             <p class="text-xs font-thin"> <%= message.formatted_created_at %> </p>
           <% end %>
       </div>
-      <div class="message w-fit p-2 rounded bg-white m-2">
+      <div class="message max-w-80 p-2 rounded bg-white m-2">
         <%= render 'messages/message_images', message: %>
-        <%= message.body %>
+        <div class="flow-text break-words">
+          <%= message.body %>
+        </div>
       </div>
 
     </div>
