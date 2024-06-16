@@ -1,22 +1,23 @@
-<%= form_with model: [@chat, @message], data: { turbo: true, controller: 'file-upload' } do |form| %>
+<%= form_with model: [@chat, @message], class: 'max-w-screen-md p-4', data: { turbo: true, controller: 'file-upload' } do |form| %>
     <%= render 'messages/errors', message: @message %>
 
 
-  <div class="flex">
-    <div>
-      <%= form.text_area :body, class: 'rounded' %>
+  <div class="flex w-full">
+    <div class="w-full">
+      <%= form.text_area :body, class: 'rounded w-full' %>
     </div>
 
-    <div class=>
-      <button data-action="click->file-upload#customUpload">
-        <%= image_tag 'pic.svg',height: 32, width: 32 %>
-      </button>
-      <%= form.file_field :attachments, multiple: true, class:"hidden", data: { "file-upload-target": "originalButton" }  %>
-    </div>
+
   </div>
 
+  <div class='flex justify-between'>
+    <button data-action="click->file-upload#customUpload">
+      <%= image_tag 'pic.svg',height: 32, width: 32 %>
+    </button>
+    <%= form.file_field :attachments, multiple: true, class:"hidden", data: { "file-upload-target": "originalButton" }  %>
+    <%= form.submit class: "bg-blue-300 p-2" %>
+  </div>
 
-  <%= form.submit   %>
 
 <% end %>
 
