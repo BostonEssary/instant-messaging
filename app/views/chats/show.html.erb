@@ -14,10 +14,14 @@
 
 <%= turbo_stream_from :messages_list %>
 <div class="w-full h-screen items-center ">
-  <div class="messages-container mx-auto h-3/4 bg-indigo-100 max-w-screen-md p-4 overflow-x-hidden overflow-y-auto" id= <%= dom_id(@chat, 'messages_for') %>>
-    <% @chat.messages.each do |message| %>
+  <div class="messages-container mx-auto h-3/4 bg-indigo-100 max-w-screen-md p-4 overflow-x-hidden overflow-y-auto"
+       id= <%= dom_id(@chat, 'messages_for') %>>
+    <% @chat.messages.each_with_index do |message, index| %>
+      <% messages_count = @chat.messages.count %>
+      <% previous_message = @chat.messages[index-1] unless index == 0 %>
+      <% next_message = @chat.messages[index + 1] unless index == (messages_count - 1) %>
       <% if message.valid? %>
-        <%= render 'messages/message', message:, user: current_user %>
+        <%= render 'messages/message', chat: @chat, message:, user: current_user, previous_message:, next_message: %>
       <% end %>
     <% end %>
   </div>

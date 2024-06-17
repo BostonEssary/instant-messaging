@@ -1,20 +1,22 @@
 <div class="" id=<%= dom_id(message) %>>
   <div class="flex items-start user_<%= message.sender_id %>">
-    <% if message.sender.avatar.presence %>
+    <% if message.sender.avatar.presence && previous_message&.sender != message.sender %>
       <%= image_tag url_for(message.sender.avatar.variant(:small_thumb)), class: "rounded-full border-2 border-black" %>
     <% end %>
     <div class="text-wrap">
       <div class="flex items-center gap-2">
-        <div class="text-xl">
-          <%= message.sender.username %>
-        </div>
+        <% if previous_message&.sender != message.sender %>
+          <div class="text-xl">
+            <%= message.sender.username %>
+          </div>
+        <% end %>
           <% unless message.deleted %>
             <p class="text-xs font-thin"> <%= message.formatted_created_at %> </p>
           <% end %>
       </div>
-      <div class="message max-w-72 p-2 rounded bg-white m-2">
+      <div class="message w-72">
         <%= render 'messages/message_images', message: %>
-        <div class="flow-text break-all">
+        <div class="w-fit p-2 rounded m-2 bg-white flow-text break-all">
           <%= message.body %>
         </div>
       </div>
