@@ -10,15 +10,16 @@
             <%= message.sender.username %>
           </div>
         <% end %>
-          <% unless message.deleted %>
-            <p class="text-xs font-thin"> <%= message.formatted_created_at %> </p>
-          <% end %>
+
       </div>
       <div class="message w-72">
         <%= render 'messages/message_images', message: %>
         <div class="w-fit p-2 rounded m-2 bg-white flow-text break-all">
           <%= message.body %>
         </div>
+        <% unless message.deleted %>
+          <p class="text-xs font-thin m-2"> <%= message.formatted_created_at %> </p>
+        <% end %>
       </div>
 
     </div>
