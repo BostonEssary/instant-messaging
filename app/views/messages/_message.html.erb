@@ -1,7 +1,7 @@
 <div class="" id=<%= dom_id(message) %>>
   <div class="flex items-center user_<%= message.sender_id %>">
     <% if previous_message&.sender != message.sender %>
-    <%= show_small_avatar(message.sender) %>
+      <%= show_small_avatar(message.sender) %>
     <% end %>
     <div class="text-wrap">
       <div class="flex m-2 items-center gap-2">
@@ -13,8 +13,8 @@
 
       </div>
       <div class="message w-72">
-        <%= render 'messages/message_images', message: %>
         <div class="w-fit p-2 rounded m-2 bg-white flow-text break-all">
+          <%= render 'messages/message_images', message: %>
           <%= message.body %>
         </div>
         <% unless message.deleted %>
