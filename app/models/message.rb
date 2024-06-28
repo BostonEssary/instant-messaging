@@ -47,7 +47,7 @@ class Message < ApplicationRecord
         broadcast_append_to :messages_list,
                             target: "messages_for_chat_#{chat.id}",
                             partial: 'messages/message',
-                            locals: { message: self, user: user }
+                            locals: { message: self, previous_message: self.chat.messages.second_to_last, user: user }
     end
 
 
